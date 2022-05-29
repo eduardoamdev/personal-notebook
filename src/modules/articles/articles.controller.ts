@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post, Param } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Param,
+  Put,
+  Delete,
+} from "@nestjs/common";
 import { ArticlesService } from "./articles.service";
-import { ArticleInterface } from "./interfaces/article.dto";
+import { ArticleInterface } from "./interfaces/article.interface";
 
 @Controller("articles")
 export class ArticlesController {
@@ -21,8 +29,13 @@ export class ArticlesController {
     return this.articlesService.create(article);
   }
 
-  @Get("test")
-  test() {
-    return this.articlesService.test();
+  @Put("update/:id")
+  update(@Param("id") id: string, @Body("article") article: ArticleInterface) {
+    return this.articlesService.update(id, article);
+  }
+
+  @Delete("delete/:id")
+  delete(@Param("id") id: string) {
+    return this.articlesService.delete(id);
   }
 }

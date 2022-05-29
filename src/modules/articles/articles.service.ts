@@ -1,21 +1,34 @@
 import { Injectable, HttpException, HttpStatus } from "@nestjs/common";
-import { ArticleInterface } from "./interfaces/article.dto";
+import { ArticleInterface } from "./interfaces/article.interface";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { Article, ArticleDocument } from "./schemas/article.schema";
+import { ErrorService } from "../../middlewares/error.service";
 
 @Injectable()
 export class ArticlesService {
   constructor(
     @InjectModel(Article.name)
     private articleModel: Model<ArticleDocument>,
+    private readonly errorService: ErrorService,
   ) {}
 
-  articles() {
+  checkArticleInfo(article) {
+    if (
+      !article.title ||
+      !article.content ||
+      article.title === "" ||
+      article.content === ""
+    ) {
+      throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async articles() {
     try {
-      return this.articleModel.find().select("title content timestamp");
+      return await this.articleModel.find().select("title content timestamp");
     } catch (error) {
-      throw new HttpException("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+      this.errorService.throwError(error);
     }
   }
 
@@ -25,53 +38,53 @@ export class ArticlesService {
         .findById(id)
         .select("title content timestamp");
 
-      if (foundArticle === null) {
-        throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);
-      }
+      this.errorService.checkNullResponseFromDB(foundArticle);
 
       return foundArticle;
     } catch (error) {
-      console.log(error);
-      if (error.response) {
-        throw new HttpException(error.response, error.status);
-      } else {
-        throw new HttpException(
-          "Server error",
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-      }
+      this.errorService.throwError(error);
     }
   }
 
-  create(article: ArticleInterface) {
+  async create(article: ArticleInterface) {
     try {
-      if (
-        !article.title ||
-        !article.content ||
-        article.title === "" ||
-        article.content === ""
-      ) {
-        console.log("entra");
-        throw new HttpException(
-          "Incorrect information",
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      this.checkArticleInfo(article);
 
-      return this.articleModel.create(article);
+      return await this.articleModel.create(article);
     } catch (error) {
-      if (error.response) {
-        throw new HttpException(error.response, error.status);
-      } else {
-        throw new HttpException(
-          "Server error",
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-      }
+      this.errorService.throwError(error);
     }
   }
 
-  test() {
-    throw new HttpException("eooo", HttpStatus.BAD_REQUEST);
+  async update(id: string, article: ArticleInterface) {
+    try {
+      this.checkArticleInfo(article);
+
+      const updatedArticle = await this.articleModel.findByIdAndUpdate(
+        id,
+        article,
+        {
+          new: true,
+        },
+      );
+
+      this.errorService.checkNullResponseFromDB(updatedArticle);
+
+      return updatedArticle;
+    } catch (error) {
+      this.errorService.throwError(error);
+    }
+  }
+
+  async delete(id: string) {
+    try {
+      const deletedArticle = await this.articleModel.findByIdAndDelete(id);
+
+      this.errorService.checkNullResponseFromDB(deletedArticle);
+
+      return deletedArticle;
+    } catch (error) {
+      this.errorService.throwError(error);
+    }
   }
 }
