@@ -1,5 +1,5 @@
 {
-  "name": "personal-blog-2",
+  "name": "backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -26,8 +26,9 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/mongoose": "^9.1.0",
     "@nestjs/platform-express": "^8.0.0",
-    "@nestjs/platform-fastify": "^8.4.5",
-    "mongoose": "^6.3.4",
+    "@nestjs/platform-fastify": "^8.4.6",
+    "bcrypt": "^5.0.1",
+    "mongoose": "^6.3.5",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

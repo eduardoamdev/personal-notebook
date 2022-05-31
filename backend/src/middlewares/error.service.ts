@@ -7,6 +7,12 @@ export class ErrorService {
     }
   }
 
+  checkRegex(regex) {
+    if (!regex) {
+      throw new HttpException("Incorrect info", HttpStatus.BAD_REQUEST);
+    }
+  }
+
   throwError(error) {
     if (error.response) {
       throw new HttpException(error.response, error.status);
