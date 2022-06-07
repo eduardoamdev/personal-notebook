@@ -1,6 +1,15 @@
-import { Controller, Post, Body, Res, Get, Query } from "@nestjs/common";
+import {
+  Controller,
+  Post,
+  Body,
+  Res,
+  Get,
+  Query,
+  UseGuards,
+} from "@nestjs/common";
 import { AuthenticationService } from "./authentication.service";
 import { UserInterface } from "./interfaces/user.interface";
+import { AuthenticationGuard } from "../../middlewares/authentication.guard";
 
 @Controller("authentication")
 export class AuthenticationController {
@@ -24,5 +33,11 @@ export class AuthenticationController {
       path: "/",
       expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION_TIME),
     });
+  }
+
+  @Get("logout")
+  @UseGuards(AuthenticationGuard)
+  async logout(@Res({ passthrough: true }) response) {
+    response.status(200).clearCookie("token");
   }
 }

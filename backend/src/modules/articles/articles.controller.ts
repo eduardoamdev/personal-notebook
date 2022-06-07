@@ -10,7 +10,7 @@ import {
 } from "@nestjs/common";
 import { ArticlesService } from "./articles.service";
 import { ArticleInterface } from "./interfaces/article.interface";
-import { AuthenticationGuard } from "src/middlewares/authentication.guard";
+import { AuthenticationGuard } from "../../middlewares/authentication.guard";
 
 @Controller("articles")
 export class ArticlesController {
