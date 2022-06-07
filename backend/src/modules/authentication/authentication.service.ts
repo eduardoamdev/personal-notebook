@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import * as bcrypt from "bcrypt";
 import { ErrorService } from "../../middlewares/error.service";
 import { User, UserDocument } from "./schemas/user.schema";
+import { LoginInterface } from "./interfaces/login.interface";
 import * as jwt from "jsonwebtoken";
 
 @Injectable()
@@ -44,19 +45,23 @@ export class AuthenticationService {
 
   async login(login) {
     try {
-      login = JSON.parse(login);
+      const processedLogin: LoginInterface = JSON.parse(login);
 
-      this.errorService.checkRegex(this.usernameRegex.test(login.username));
-      this.errorService.checkRegex(this.passwordRegex.test(login.password));
+      this.errorService.checkRegex(
+        this.usernameRegex.test(processedLogin.username),
+      );
+      this.errorService.checkRegex(
+        this.passwordRegex.test(processedLogin.password),
+      );
 
       const foundUser = await this.userModel.findOne({
-        username: login.username,
+        username: processedLogin.username,
       });
 
       this.errorService.checkNullResponseFromDB(foundUser);
 
       const passwordIsValid = await bcrypt.compare(
-        login.password,
+        processedLogin.password,
         foundUser.password,
       );
 

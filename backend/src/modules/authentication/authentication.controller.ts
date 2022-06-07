@@ -1,6 +1,5 @@
 import { Controller, Post, Body, Res, Get, Query } from "@nestjs/common";
 import { AuthenticationService } from "./authentication.service";
-import { LoginInterface } from "./interfaces/login.interface";
 import { UserInterface } from "./interfaces/user.interface";
 
 @Controller("authentication")
