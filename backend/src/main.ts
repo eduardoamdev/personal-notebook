@@ -4,7 +4,6 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
-import * as cookieParser from "cookie-parser";
 import cookie, { FastifyCookieOptions } from "@fastify/cookie";
 
 async function bootstrap() {
@@ -12,8 +11,6 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-
-  app.use(cookieParser());
 
   app.register(cookie, {
     secret: process.env.SECRET_COOKIE_WORD,
