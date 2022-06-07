@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import * as bcrypt from "bcrypt";
 import { ErrorService } from "../../middlewares/error.service";
 import { User, UserDocument } from "./schemas/user.schema";
+import * as jwt from "jsonwebtoken";
 
 @Injectable()
 export class AuthenticationService {
@@ -43,6 +44,8 @@ export class AuthenticationService {
 
   async login(login) {
     try {
+      login = JSON.parse(login);
+
       this.errorService.checkRegex(this.usernameRegex.test(login.username));
       this.errorService.checkRegex(this.passwordRegex.test(login.password));
 
@@ -59,7 +62,15 @@ export class AuthenticationService {
 
       this.errorService.checkPassword(passwordIsValid);
 
-      return login;
+      const token = jwt.sign(
+        { _id: foundUser._id },
+        process.env.SECRET_TOKEN_WORD,
+        {
+          expiresIn: 3600,
+        },
+      );
+
+      return token;
     } catch (error) {
       this.errorService.throwError(error);
     }

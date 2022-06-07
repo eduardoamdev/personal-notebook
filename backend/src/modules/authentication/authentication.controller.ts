@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Body, Res, Get, Query } from "@nestjs/common";
 import { AuthenticationService } from "./authentication.service";
 import { LoginInterface } from "./interfaces/login.interface";
 import { UserInterface } from "./interfaces/user.interface";
@@ -12,8 +12,18 @@ export class AuthenticationController {
     return this.authenticationService.create(user);
   }
 
-  @Post("login")
-  login(@Body("login") login: LoginInterface) {
-    return this.authenticationService.login(login);
+  @Get("login")
+  async login(
+    @Query("login") login: string,
+    @Res({ passthrough: true }) response,
+  ) {
+    const token = await this.authenticationService.login(login);
+
+    response.status(200).cookie("token", token, {
+      sameSite: "strict",
+      httpOnly: true,
+      path: "/",
+      expires: new Date(Date.now() + 3600),
+    });
   }
 }
