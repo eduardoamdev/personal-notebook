@@ -13,6 +13,21 @@ export class ErrorService {
     }
   }
 
+  checkExistingElement(element, foundElements) {
+    if (foundElements.length !== 0) {
+      throw new HttpException(
+        `${element} already exists`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  checkPassword(check) {
+    if (!check) {
+      throw new HttpException("Bad authentication", HttpStatus.BAD_REQUEST);
+    }
+  }
+
   throwError(error) {
     if (error.response) {
       throw new HttpException(error.response, error.status);
