@@ -22,7 +22,7 @@ export class AuthenticationController {
       sameSite: "strict",
       httpOnly: true,
       path: "/",
-      expires: new Date(Date.now() + 3600),
+      expires: new Date(Date.now() + process.env.COOKIE_EXPIRATION_TIME),
     });
   }
 }
