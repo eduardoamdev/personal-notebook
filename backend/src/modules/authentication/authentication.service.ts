@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import * as bcrypt from "bcrypt";
 import { ErrorService } from "../../middlewares/error.service";
 import { User, UserDocument } from "./schemas/user.schema";
+import { Token, TokenDocument } from "./schemas/token.schema";
 import { LoginInterface } from "./interfaces/login.interface";
 import * as jwt from "jsonwebtoken";
 
@@ -16,6 +17,8 @@ export class AuthenticationService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<UserDocument>,
+    @InjectModel(Token.name)
+    private tokenModel: Model<TokenDocument>,
     private readonly errorService: ErrorService,
   ) {}
 
@@ -72,6 +75,18 @@ export class AuthenticationService {
       });
 
       return `Bearer ${token}`;
+    } catch (error) {
+      this.errorService.throwError(error);
+    }
+  }
+
+  async logout(request) {
+    try {
+      const token = request.cookies.token.slice(7);
+
+      const newInvalidToken = await this.tokenModel.create({ token });
+
+      this.errorService.checkNullResponseFromDB(newInvalidToken);
     } catch (error) {
       this.errorService.throwError(error);
     }

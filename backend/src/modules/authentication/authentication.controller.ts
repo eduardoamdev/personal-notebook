@@ -6,6 +6,7 @@ import {
   Get,
   Query,
   UseGuards,
+  Req,
 } from "@nestjs/common";
 import { AuthenticationService } from "./authentication.service";
 import { UserInterface } from "./interfaces/user.interface";
@@ -37,7 +38,9 @@ export class AuthenticationController {
 
   @Get("logout")
   @UseGuards(AuthenticationGuard)
-  async logout(@Res({ passthrough: true }) response) {
+  async logout(@Req() request, @Res({ passthrough: true }) response) {
+    await this.authenticationService.logout(request);
+
     response.status(200).clearCookie("token");
   }
 }
