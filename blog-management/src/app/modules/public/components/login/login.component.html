@@ -1,1 +1,8 @@
-<p>login</p>
+<h2>Login</h2>
+<form [formGroup]="form" (ngSubmit)="save($event)">
+  <label for="username">Username:</label>
+  <input type="text" formControlName="username">
+  <label for="password">Password:</label>
+  <input type="text" formControlName="password">
+  <input type="submit" value="Submit">
+</form>
