@@ -12,6 +12,8 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
+  app.enableCors();
+
   app.register(cookie, {
     secret: process.env.SECRET_COOKIE_WORD,
     parseOptions: {},
