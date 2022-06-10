@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
-import { FormGroup } from "@angular/forms";
-import { Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { ApiCalls } from "../../../../services/api-calls.service";
 
 @Component({
   selector: "app-login",
@@ -10,22 +9,29 @@ import { Validators } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
+  minUsernameLength: number = 4;
+  minPasswordLength: number = 8;
 
-  constructor() {
+  constructor(private apiCalls: ApiCalls) {
     this.form = new FormGroup({
-      username: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
-    });
-
-    this.form.valueChanges.subscribe((value) => {
-      console.log(value);
+      username: new FormControl("", [
+        Validators.required,
+        Validators.minLength(this.minUsernameLength),
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(this.minPasswordLength),
+      ]),
     });
   }
 
-  save(event: Event) {
+  submit(event: Event) {
     event.preventDefault();
     const value = this.form.value;
     console.log(value);
+    this.apiCalls.getArticles().subscribe((res: any) => {
+      console.log(res);
+    });
   }
 
   ngOnInit(): void {}
