@@ -27,11 +27,14 @@ export class LoginComponent implements OnInit {
 
   submit(event: Event) {
     event.preventDefault();
+
     const value = this.form.value;
-    console.log(value);
-    this.apiCalls.getArticles().subscribe((res: any) => {
-      console.log(res);
-    });
+
+    this.apiCalls
+      .login(value.username, value.password)
+      .subscribe((res: any) => {
+        console.log(res);
+      });
   }
 
   ngOnInit(): void {}
