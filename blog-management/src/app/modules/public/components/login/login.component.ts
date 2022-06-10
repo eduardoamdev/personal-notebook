@@ -9,19 +9,11 @@ import { ApiCalls } from "../../../../services/api-calls.service";
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  minUsernameLength: number = 4;
-  minPasswordLength: number = 8;
 
   constructor(private apiCalls: ApiCalls) {
     this.form = new FormGroup({
-      username: new FormControl("", [
-        Validators.required,
-        Validators.minLength(this.minUsernameLength),
-      ]),
-      password: new FormControl("", [
-        Validators.required,
-        Validators.minLength(this.minPasswordLength),
-      ]),
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
   }
 
