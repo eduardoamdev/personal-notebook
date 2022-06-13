@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.apiCalls
       .login(value.username, value.password)
       .subscribe((res: any) => {
-        console.log(res);
+        console.log("Succesful login");
       });
   }
 
