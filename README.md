@@ -1,5 +1,7 @@
 # Blog personal 2.0
 
+<img src="./readme-images/angular-nestjs.jpg" alt="angular-nestjs" />
+
 ## Descripción:
 
 Este proyecto el un blog que tiene el objetivo de ser una presentación personal y emplearse también para subir artículos acerca de temas relacionados con el mundo del desarrollo web.
