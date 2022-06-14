@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   baseUrl: "http://localhost:3000",
+  username: "Eduardo",
+  password: "Hermes2906",
 };
 
 /*

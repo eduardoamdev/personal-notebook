@@ -3,6 +3,7 @@
   <label for="username">Username:</label>
   <input type="text" formControlName="username">
   <label for="password">Password:</label>
-  <input type="text" formControlName="password">
+  <input type="text" formControlName="password" type="password">
   <input type="submit" value="Submit" [disabled]="this.form.invalid">
+  <div *ngIf="validationError"><p>Bad authentication</p></div>
 </form>
