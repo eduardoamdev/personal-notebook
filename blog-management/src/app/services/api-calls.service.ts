@@ -11,7 +11,13 @@ export class ApiCalls {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    const httpQuery: string = `?login=%7B%22username%22%3A%22${username}%22,%20%22password%22%3A%22${password}%3F%22%7D`;
+    const loginInfo = { username, password };
+
+    const result = "?" + new URLSearchParams(loginInfo).toString();
+
+    const queriedProperties = result.split("?username=")[1].split("&password=");
+
+    const httpQuery: string = `?login=%7B%22username%22%3A%22${queriedProperties[0]}%22,%20%22password%22%3A%22${queriedProperties[1]}%22%7D`;
 
     return this.http.get(`${this.baseUrl}/authentication/login${httpQuery}`);
   }
