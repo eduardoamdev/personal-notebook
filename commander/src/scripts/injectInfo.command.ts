@@ -28,22 +28,37 @@ export class InjectInfo implements CommandRunner {
       const articles = getArticles();
       const tokens = getTokens();
 
+      await this.userModel.deleteMany();
+
+      console.log("Users have been deleted succesfully");
+
       for (let i = 0; i < users.length; i++) {
         const newUser = await this.userModel.create(users[i]);
+
         console.log(
           `A new user has been created with the following name: ${newUser.username}`,
         );
       }
 
+      await this.articleModel.deleteMany();
+
+      console.log("Articles have been deleted succesfully");
+
       for (let i = 0; i < articles.length; i++) {
         const newArticle = await this.articleModel.create(articles[i]);
+
         console.log(
           `A new article has been created with the following title: ${newArticle.title}`,
         );
       }
 
+      await this.tokenModel.deleteMany();
+
+      console.log("Tokens have been deleted succesfully");
+
       for (let i = 0; i < tokens.length; i++) {
         const newToken = await this.tokenModel.create(tokens[i]);
+
         console.log(`The following token has been created: ${newToken.token}`);
       }
     } catch (error) {
