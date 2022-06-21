@@ -15,7 +15,7 @@ const publicRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(publicRoutes)],
+  imports: [RouterModule.forChild(publicRoutes)],
   exports: [RouterModule],
 })
 export class PublicRoutingModule {}
