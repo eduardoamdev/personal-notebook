@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiCalls } from "../../../../services/api-calls.service";
 import { environment } from "../../../../../environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   validationError: boolean;
 
-  constructor(private apiCalls: ApiCalls) {
+  constructor(private apiCalls: ApiCalls, private router: Router) {
     this.validationError = false;
     this.form = new FormGroup({
       username: new FormControl(environment.username, [Validators.required]),
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.apiCalls.login(value.username, value.password).subscribe(
       (res: any) => {
         this.validationError = false;
-        console.log("Succesful login");
+        this.router.navigate(["/private/initial-page"]);
       },
       (err) => {
         this.validationError = true;
