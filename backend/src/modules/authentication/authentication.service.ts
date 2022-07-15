@@ -50,13 +50,6 @@ export class AuthenticationService {
     try {
       const processedLogin: LoginInterface = JSON.parse(login);
 
-      this.errorService.checkRegex(
-        this.usernameRegex.test(processedLogin.username),
-      );
-      this.errorService.checkRegex(
-        this.passwordRegex.test(processedLogin.password),
-      );
-
       const foundUser = await this.userModel.findOne({
         username: processedLogin.username,
       });

@@ -5,7 +5,7 @@ export default function getUsers() {
   const users: User[] = [
     {
       username: "eduardo",
-      password: "eduardo2906",
+      password: "Eduardo2906?",
     },
   ];
 

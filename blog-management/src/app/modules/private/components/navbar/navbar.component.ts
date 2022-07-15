@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "initial-page",
-  templateUrl: "./initial-page.component.html",
-  styleUrls: ["./initial-page.component.css"],
+  selector: "navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"],
 })
-export class InitialPageComponent implements OnInit {
+export class Navbar implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Navbar } from "../navbar/navbar.component";
 
 @Component({
   selector: "initial-page",
