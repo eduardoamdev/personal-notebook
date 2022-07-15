@@ -4,12 +4,8 @@ import { User } from "../interfaces/user.interface";
 export default function getUsers() {
   const users: User[] = [
     {
-      username: "Mariano",
-      password: "Mariano12?",
-    },
-    {
-      username: "Alfredo",
-      password: "Alfredo12?",
+      username: "eduardo",
+      password: "eduardo2906",
     },
   ];
 
