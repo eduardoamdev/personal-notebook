@@ -17,7 +17,13 @@ export class ArticlesService {
 
   async articles() {
     try {
-      return await this.articleModel.find().select("title content timestamp");
+      const foundArticles = await this.articleModel
+        .find()
+        .select("title content timestamp");
+
+      this.errorService.checkNullResponseFromDB(foundArticles);
+
+      return foundArticles;
     } catch (error) {
       this.errorService.throwError(error);
     }

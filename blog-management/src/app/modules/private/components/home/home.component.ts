@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ApiCalls } from "../../../../services/api-calls.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { ApiCalls } from "../../../../services/api-calls.service";
   styleUrls: ["./home.component.css"],
 })
 export class Home implements OnInit {
+  @Input("username") username: string = "";
+
   constructor(private apiCalls: ApiCalls) {}
 
   ngOnInit(): void {
@@ -15,7 +17,7 @@ export class Home implements OnInit {
 
   async getUser() {
     await this.apiCalls.getUser().subscribe((res: any) => {
-      console.log(res);
+      this.username = res.username;
     });
   }
 }

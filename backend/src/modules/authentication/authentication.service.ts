@@ -63,9 +63,13 @@ export class AuthenticationService {
 
       this.errorService.checkPassword(passwordIsValid);
 
-      const token = jwt.sign({}, process.env.SECRET_TOKEN_WORD, {
-        expiresIn: 3600,
-      });
+      const token = jwt.sign(
+        { userId: foundUser._id },
+        process.env.SECRET_TOKEN_WORD,
+        {
+          expiresIn: 3600,
+        },
+      );
 
       return `Bearer ${token}`;
     } catch (error) {
