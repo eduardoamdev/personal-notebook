@@ -36,9 +36,8 @@ export class AuthenticationController {
   }
 
   @Get("logout")
-  /* @UseGuards(AuthenticationGuard) */
+  @UseGuards(AuthenticationGuard)
   async logout(@Req() request, @Res({ passthrough: true }) response) {
-    console.log(request);
     await this.authenticationService.logout(request);
 
     response.status(200).clearCookie("token");
