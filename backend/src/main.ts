@@ -12,7 +12,10 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.enableCors();
+  app.enableCors({
+    origin: ["http://localhost:4200"],
+    credentials: true,
+  });
 
   app.register(cookie, {
     secret: process.env.SECRET_COOKIE_WORD,

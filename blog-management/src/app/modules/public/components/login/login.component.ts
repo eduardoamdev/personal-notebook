@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ResolvedReflectiveFactory } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ApiCalls } from "../../../../services/api-calls.service";
 import { environment } from "../../../../../environments/environment";
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
 })
-export class LoginComponent implements OnInit {
+export class Login implements OnInit {
   form: FormGroup;
   validationError: boolean;
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.apiCalls.login(value.username, value.password).subscribe(
       (res: any) => {
         this.validationError = false;
-        this.router.navigate(["/private/initial-page"]);
+        this.router.navigate(["/private/home"]);
       },
       (err) => {
         this.validationError = true;

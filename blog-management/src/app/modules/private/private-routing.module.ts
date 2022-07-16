@@ -1,11 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { InitialPageComponent } from "./components/initial-page/initial-page.component";
+import { Home } from "./components/home/home.component";
+import { Articles } from "./components/articles/articles.component";
 
 const privateRoutes: Routes = [
   {
-    path: "initial-page",
-    component: InitialPageComponent,
+    path: "home",
+    component: Home,
+  },
+  {
+    path: "articles",
+    component: Articles,
   },
 ];
 

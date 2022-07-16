@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { FrontPageComponent } from "./components/front-page/front-page.component";
-import { LoginComponent } from "./components/login/login.component";
+import { FrontPage } from "./components/front-page/front-page.component";
+import { Login } from "./components/login/login.component";
 
 const publicRoutes: Routes = [
   {
     path: "",
-    component: FrontPageComponent,
+    component: FrontPage,
   },
   {
     path: "login",
-    component: LoginComponent,
+    component: Login,
   },
 ];
 

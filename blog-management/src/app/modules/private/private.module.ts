@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
-import { InitialPageComponent } from "./components/initial-page/initial-page.component";
-import { Navbar } from "./components/navbar/navbar.component";
-import { PrivateRoutingModule } from "./private-routing.module";
 import { CommonModule } from "@angular/common";
+import { Home } from "./components/home/home.component";
+import { Navbar } from "./components/navbar/navbar.component";
+import { Articles } from "./components/articles/articles.component";
+import { PrivateRoutingModule } from "./private-routing.module";
 
 @NgModule({
-  declarations: [InitialPageComponent, Navbar],
+  declarations: [Home, Navbar, Articles],
   imports: [CommonModule, PrivateRoutingModule],
   providers: [],
   bootstrap: [],

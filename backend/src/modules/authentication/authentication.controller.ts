@@ -30,14 +30,15 @@ export class AuthenticationController {
 
     response.status(200).cookie("token", token, {
       sameSite: "strict",
-      httpOnly: true,
       path: "/",
+      httpOnly: true,
     });
   }
 
   @Get("logout")
-  @UseGuards(AuthenticationGuard)
+  /* @UseGuards(AuthenticationGuard) */
   async logout(@Req() request, @Res({ passthrough: true }) response) {
+    console.log(request);
     await this.authenticationService.logout(request);
 
     response.status(200).clearCookie("token");

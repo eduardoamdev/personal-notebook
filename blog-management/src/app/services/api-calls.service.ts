@@ -21,6 +21,24 @@ export class ApiCalls {
 
     const httpQuery: string = `?login=%7B%22username%22%3A%22${queriedSeparatedInfo[0]}%22,%20%22password%22%3A%22${queriedSeparatedInfo[1]}%22%7D`;
 
-    return this.http.get(`${this.baseUrl}/authentication/login${httpQuery}`);
+    return this.http.get(`${this.baseUrl}/authentication/login${httpQuery}`, {
+      withCredentials: true,
+    });
+  }
+
+  logout() {
+    return this.http.get(`${this.baseUrl}/authentication/logout`, {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+        cookie: document.cookie,
+      },
+    });
+  }
+
+  getUser() {
+    return this.http.get(`${this.baseUrl}/users/user`, {
+      withCredentials: true,
+    });
   }
 }
