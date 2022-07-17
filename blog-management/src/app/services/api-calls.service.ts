@@ -41,4 +41,16 @@ export class ApiCalls {
       withCredentials: true,
     });
   }
+
+  getArticles() {
+    return this.http.get(`${this.baseUrl}/articles`, {
+      withCredentials: true,
+    });
+  }
+
+  getArticle(id: string) {
+    return this.http.get(`${this.baseUrl}/articles/${id}`, {
+      withCredentials: true,
+    });
+  }
 }
