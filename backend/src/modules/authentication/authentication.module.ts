@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { AuthenticationController } from "./authentication.controller";
 import { AuthenticationService } from "./authentication.service";
-import { ErrorService } from "../..//middlewares/error.service";
+import { Error } from "../../middlewares/error";
 import { User, UserSchema } from "./schemas/user.schema";
 import { Token, TokenSchema } from "./schemas/token.schema";
 import { MongooseModule } from "@nestjs/mongoose";
@@ -14,6 +14,6 @@ import { MongooseModule } from "@nestjs/mongoose";
     ]),
   ],
   controllers: [AuthenticationController],
-  providers: [ErrorService, AuthenticationService],
+  providers: [Error, AuthenticationService],
 })
 export class AuthenticationModule {}

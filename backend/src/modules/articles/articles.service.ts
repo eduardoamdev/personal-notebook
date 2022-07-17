@@ -3,7 +3,7 @@ import { ArticleInterface } from "./interfaces/article.interface";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { Article, ArticleDocument } from "./schemas/article.schema";
-import { ErrorService } from "../../middlewares/error.service";
+import { Error } from "../../middlewares/error";
 
 @Injectable()
 export class ArticlesService {
@@ -12,7 +12,7 @@ export class ArticlesService {
   constructor(
     @InjectModel(Article.name)
     private articleModel: Model<ArticleDocument>,
-    private readonly errorService: ErrorService,
+    private readonly errorService: Error,
   ) {}
 
   async articles() {

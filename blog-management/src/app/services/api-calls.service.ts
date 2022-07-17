@@ -53,4 +53,14 @@ export class ApiCalls {
       withCredentials: true,
     });
   }
+
+  newArticle(article: any) {
+    return this.http.post(
+      `${this.baseUrl}/articles/create`,
+      { article },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 }

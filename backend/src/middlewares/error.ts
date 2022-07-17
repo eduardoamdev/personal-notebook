@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
 
-export class ErrorService {
+export class Error {
   checkNullResponseFromDB(dbResponse) {
     if (dbResponse === null) {
       throw new HttpException("Bad request", HttpStatus.BAD_REQUEST);

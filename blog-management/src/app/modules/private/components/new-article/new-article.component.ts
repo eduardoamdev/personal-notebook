@@ -28,7 +28,7 @@ export class NewArticle implements OnInit {
 
     const value = this.form.value;
 
-    /* this.apiCalls.newArticle(value).subscribe(
+    this.apiCalls.newArticle(value).subscribe(
       (res: any) => {
         this.validationError = false;
         this.router.navigate(["/private/articles"]);
@@ -36,6 +36,6 @@ export class NewArticle implements OnInit {
       (err) => {
         this.validationError = true;
       }
-    ); */
+    );
   }
 }

@@ -2,14 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { Model } from "mongoose";
 import { InjectModel } from "@nestjs/mongoose";
 import { User, UserDocument } from "../authentication/schemas/user.schema";
-import { ErrorService } from "../../middlewares/error.service";
+import { Error } from "../../middlewares/error";
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name)
     private userModel: Model<UserDocument>,
-    private readonly errorService: ErrorService,
+    private readonly errorService: Error,
   ) {}
 
   async user(id) {
