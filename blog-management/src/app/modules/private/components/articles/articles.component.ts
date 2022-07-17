@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { ApiCalls } from "../../../../services/api-calls.service";
+import { article } from "../../../../interfaces/article.interface";
 
 @Component({
   selector: "articles",
@@ -6,7 +8,20 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./articles.component.css"],
 })
 export class Articles implements OnInit {
-  constructor() {}
+  @Input("articles") articles: article[] | undefined;
 
-  ngOnInit(): void {}
+  loading: boolean = true;
+
+  constructor(private apiCalls: ApiCalls) {}
+
+  ngOnInit(): void {
+    this.getArticles();
+  }
+
+  getArticles() {
+    this.apiCalls.getArticles().subscribe((res: any) => {
+      this.articles = res;
+      this.loading = false;
+    });
+  }
 }

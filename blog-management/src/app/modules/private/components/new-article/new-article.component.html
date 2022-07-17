@@ -1,0 +1,12 @@
+<navbar></navbar>
+
+<h2>New article</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit($event)">
+  <label for="title">Title:</label>
+  <input type="text" formControlName="title" />
+  <label for="content">Content:</label>
+  <input type="text" formControlName="content" />
+  <input type="submit" value="Submit" [disabled]="this.form.invalid" />
+  <div *ngIf="validationError"><p>Fill the fields properly</p></div>
+</form>

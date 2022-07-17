@@ -9,15 +9,18 @@ import { ApiCalls } from "../../../../services/api-calls.service";
 export class Home implements OnInit {
   @Input("username") username: string = "";
 
+  loading: boolean = true;
+
   constructor(private apiCalls: ApiCalls) {}
 
   ngOnInit(): void {
     this.getUser();
   }
 
-  async getUser() {
-    await this.apiCalls.getUser().subscribe((res: any) => {
+  getUser() {
+    this.apiCalls.getUser().subscribe((res: any) => {
       this.username = res.username;
+      this.loading = false;
     });
   }
 }

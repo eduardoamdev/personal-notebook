@@ -1,0 +1,8 @@
+<navbar></navbar>
+
+<h1 *ngIf="loading">Loading</h1>
+
+<div *ngIf="!loading">
+  <div>{{ article.title }}</div>
+  <div>{{ article.content }}</div>
+</div>

@@ -1,2 +1,11 @@
 <navbar></navbar>
+
 <h1>Articles</h1>
+
+<h1 *ngIf="loading">Loading</h1>
+
+<div *ngIf="!loading">
+  <div *ngFor="let article of articles">
+    <a href="/private/article/{{ article._id }}">{{ article.title }}</a>
+  </div>
+</div>
