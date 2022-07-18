@@ -7,8 +7,6 @@ import { Error } from "../../middlewares/error";
 
 @Injectable()
 export class ArticlesService {
-  articleRegex = /^\s*$/;
-
   constructor(
     @InjectModel(Article.name)
     private articleModel: Model<ArticleDocument>,
@@ -45,9 +43,11 @@ export class ArticlesService {
 
   async create(article: ArticleInterface) {
     try {
-      this.errorService.checkRegex(this.articleRegex);
+      const createdArticle = await this.articleModel.create(article);
 
-      return await this.articleModel.create(article);
+      this.errorService.checkNullResponseFromDB(createdArticle);
+
+      return createdArticle;
     } catch (error) {
       this.errorService.throwError(error);
     }
@@ -55,9 +55,6 @@ export class ArticlesService {
 
   async update(id: string, article: ArticleInterface) {
     try {
-      this.errorService.checkRegex(this.articleRegex.test(article.title));
-      this.errorService.checkRegex(this.articleRegex.test(article.content));
-
       const updatedArticle = await this.articleModel.findByIdAndUpdate(
         id,
         article,

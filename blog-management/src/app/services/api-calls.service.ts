@@ -63,4 +63,20 @@ export class ApiCalls {
       }
     );
   }
+
+  updateArticle(id: string, article: any) {
+    return this.http.put(
+      `${this.baseUrl}/articles/update/${id}`,
+      { article },
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  deleteArticle(id: string) {
+    return this.http.delete(`${this.baseUrl}/articles/delete/${id}`, {
+      withCredentials: true,
+    });
+  }
 }

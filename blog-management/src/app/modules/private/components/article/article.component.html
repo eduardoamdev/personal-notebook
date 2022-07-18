@@ -3,6 +3,8 @@
 <h1 *ngIf="loading">Loading</h1>
 
 <div *ngIf="!loading">
+  <a href="/private/updateArticle/{{ article._id }}">Update</a>
+  <a href="/private/deleteArticle/{{ article._id }}">Delete</a>
   <div>{{ article.title }}</div>
   <div>{{ article.content }}</div>
 </div>
