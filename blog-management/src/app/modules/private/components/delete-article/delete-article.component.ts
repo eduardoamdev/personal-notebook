@@ -20,9 +20,7 @@ export class DeleteArticle implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.id);
-  }
+  ngOnInit(): void {}
 
   deleteArticle() {
     this.apiCalls.deleteArticle(this.id).subscribe((data) => {

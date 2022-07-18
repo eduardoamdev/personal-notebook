@@ -35,7 +35,6 @@ export class ArticlesController {
   @Put("update/:id")
   @UseGuards(AuthenticationGuard)
   update(@Param("id") id: string, @Body("article") article: ArticleInterface) {
-    console.log(id, article);
     return this.articlesService.update(id, article);
   }
 
