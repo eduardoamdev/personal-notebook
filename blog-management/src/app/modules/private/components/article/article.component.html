@@ -1,10 +1,29 @@
 <navbar></navbar>
 
-<h1 *ngIf="loading">Loading</h1>
+<div class="flex-column margin-top-5">
+  <div class="flex-space-around width-30">
+    <a
+      href="/private/updateArticle/{{ article._id }}"
+      type="button"
+      class="btn btn-primary"
+      >Update
+    </a>
+    <a
+      href="/private/deleteArticle/{{ article._id }}"
+      type="button"
+      class="btn btn-danger"
+      >Delete
+    </a>
+  </div>
 
-<div *ngIf="!loading">
-  <a href="/private/updateArticle/{{ article._id }}">Update</a>
-  <a href="/private/deleteArticle/{{ article._id }}">Delete</a>
-  <div>{{ article.title }}</div>
-  <div>{{ article.content }}</div>
+  <h3 *ngIf="loading" class="margin-top-5">Loading</h3>
+
+  <div *ngIf="!loading" class="margin-top-3 border-black-2">
+    <div class="flex-center border-black-1 title-padding max-width-35">
+      {{ article.title }}
+    </div>
+    <div class="border-black-1 title-padding max-width-35">
+      {{ article.content }}
+    </div>
+  </div>
 </div>

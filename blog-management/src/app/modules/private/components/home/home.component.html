@@ -1,3 +1,6 @@
 <navbar></navbar>
-<h1 *ngIf="loading">Loading</h1>
-<h1 *ngIf="!loading">Welcome {{ username }}</h1>
+
+<div class="flex-center">
+  <h3 *ngIf="loading" class="margin-top-15">Loading</h3>
+  <h2 *ngIf="!loading" class="margin-top-15">Welcome {{ username }}</h2>
+</div>

@@ -1,11 +1,19 @@
 <navbar></navbar>
 
-<h1>Articles</h1>
+<div class="flex-column">
+  <h2 class="margin-top-7">Articles</h2>
 
-<h1 *ngIf="loading">Loading</h1>
+  <div class="margin-top-3 margin-bottom-7">
+    <h3 *ngIf="loading">Loading</h3>
 
-<div *ngIf="!loading">
-  <div *ngFor="let article of articles">
-    <a href="/private/article/{{ article._id }}">{{ article.title }}</a>
+    <div *ngIf="!loading" class="border-black-2">
+      <div *ngFor="let article of articles">
+        <a href="/private/article/{{ article._id }}">
+          <div class="border-black-1 title-padding max-width-25">
+            {{ article.title }}
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </div>

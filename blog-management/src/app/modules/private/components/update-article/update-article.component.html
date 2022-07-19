@@ -1,17 +1,42 @@
 <navbar></navbar>
 
-<h2>Update article</h2>
+<div class="flex-column margin-top-5">
+  <div class="flex-space-around width-30">
+    <a href="/private/article/{{ id }}" type="button" class="btn btn-primary"
+      >Back
+    </a>
+  </div>
 
-<h1 *ngIf="loading">Loading</h1>
+  <h3 *ngIf="loading" class="margin-top-5">Loading</h3>
 
-<div *ngIf="!loading">
-  <form [formGroup]="form" (ngSubmit)="submit($event)">
-    <label for="title">Title:</label>
-    <input type="text" formControlName="title" />
-    <label for="content">Content:</label>
-    <textarea rows="4" cols="50" type="text" formControlName="content">
-    </textarea>
-    <input type="submit" value="Submit" [disabled]="this.form.invalid" />
-    <div *ngIf="validationError"><p>Fill the fields properly</p></div>
-  </form>
+  <div *ngIf="!loading" class="flex-center margin-top-3">
+    <form [formGroup]="form" (ngSubmit)="submit($event)" class="width-30">
+      <div class="flex-column">
+        <label for="title">Title:</label>
+        <input type="text" formControlName="title" class="margin-top-1" />
+      </div>
+      <div class="flex-column margin-top-2">
+        <label for="content">Content:</label>
+        <textarea
+          rows="4"
+          cols="50"
+          type="text"
+          formControlName="content"
+          class="margin-top-1"
+        >
+        </textarea>
+      </div>
+      <div class="flex-center">
+        <input
+          type="submit"
+          value="Update"
+          [disabled]="this.form.invalid"
+          class="btn btn-primary margin-top-2"
+        />
+      </div>
+      <div *ngIf="validationError" class="margin-top-1">
+        <p class="text-danger bold-font">Fill the fields properly</p>
+      </div>
+    </form>
+  </div>
 </div>

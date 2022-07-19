@@ -1,9 +1,32 @@
-<h2>Login</h2>
-<form [formGroup]="form" (ngSubmit)="submit($event)">
-  <label for="username">Username:</label>
-  <input type="text" formControlName="username" />
-  <label for="password">Password:</label>
-  <input type="password" formControlName="password" />
-  <input type="submit" value="Submit" [disabled]="this.form.invalid" />
-  <div *ngIf="validationError"><p>Bad authentication</p></div>
-</form>
+<div class="margin-top-7">
+  <div class="flex-center">
+    <h2>Login</h2>
+  </div>
+
+  <div class="flex-center margin-top-3">
+    <form class="width-20" [formGroup]="form" (ngSubmit)="submit($event)">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" formControlName="username" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="this.form.invalid"
+      >
+        Submit
+      </button>
+      <div *ngIf="validationError" class="margin-top-1">
+        <p class="text-danger bold-font">Bad authentication</p>
+      </div>
+    </form>
+  </div>
+</div>

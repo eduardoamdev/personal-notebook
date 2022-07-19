@@ -3,7 +3,6 @@ import { ApiCalls } from "../../../../services/api-calls.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
-import { article } from "../../../../interfaces/article.interface";
 
 @Component({
   selector: "update-article",
@@ -11,17 +10,11 @@ import { article } from "../../../../interfaces/article.interface";
   styleUrls: ["./update-article.component.css"],
 })
 export class UpdateArticle implements OnInit {
-  @Input("article") article: article = {
-    _id: "",
-    title: "",
-    content: "",
-  };
+  @Input("id") id: string = "";
 
   loading: boolean = true;
 
   form: FormGroup;
-
-  id: string = "";
 
   validationError: boolean;
 
@@ -46,7 +39,6 @@ export class UpdateArticle implements OnInit {
 
   async getArticle() {
     this.apiCalls.getArticle(this.id).subscribe((res: any) => {
-      this.article = res;
       this.form.patchValue({ title: res.title, content: res.content });
       this.loading = false;
     });
