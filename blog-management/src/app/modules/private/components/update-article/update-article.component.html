@@ -1,7 +1,7 @@
 <navbar></navbar>
 
 <div class="flex-column margin-top-5">
-  <div class="flex-space-around width-30">
+  <div class="flex-space-around">
     <a href="/private/article/{{ id }}" type="button" class="btn btn-primary"
       >Back
     </a>
@@ -10,10 +10,14 @@
   <h3 *ngIf="loading" class="margin-top-5">Loading</h3>
 
   <div *ngIf="!loading" class="flex-center margin-top-3">
-    <form [formGroup]="form" (ngSubmit)="submit($event)" class="width-30">
+    <form [formGroup]="form" (ngSubmit)="submit($event)">
       <div class="flex-column">
         <label for="title">Title:</label>
-        <input type="text" formControlName="title" class="margin-top-1" />
+        <input
+          type="text"
+          formControlName="title"
+          class="margin-top-1 input-mobile-width"
+        />
       </div>
       <div class="flex-column margin-top-2">
         <label for="content">Content:</label>
@@ -22,7 +26,7 @@
           cols="50"
           type="text"
           formControlName="content"
-          class="margin-top-1"
+          class="margin-top-1 textarea-mobile-width"
         >
         </textarea>
       </div>

@@ -3,14 +3,14 @@
 <div class="flex-column margin-top-5">
   <h2>New article</h2>
 
-  <form
-    [formGroup]="form"
-    (ngSubmit)="submit($event)"
-    class="width-30 margin-top-2"
-  >
+  <form [formGroup]="form" (ngSubmit)="submit($event)" class="margin-top-2">
     <div class="flex-column">
       <label for="title">Title:</label>
-      <input type="text" formControlName="title" class="margin-top-1" />
+      <input
+        type="text"
+        formControlName="title"
+        class="margin-top-1 input-mobile-width"
+      />
     </div>
     <div class="flex-column margin-top-2">
       <label for="content">Content:</label>
@@ -19,7 +19,7 @@
         cols="50"
         type="text"
         formControlName="content"
-        class="margin-top-1"
+        class="margin-top-1 textarea-mobile-width"
       >
       </textarea>
     </div>

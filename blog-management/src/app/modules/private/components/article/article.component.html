@@ -1,7 +1,7 @@
 <navbar></navbar>
 
-<div class="flex-column margin-top-5">
-  <div class="flex-space-around width-30">
+<div class="flex-column margin-top-7">
+  <div class="flex-space-around top-buttons-width">
     <a
       href="/private/updateArticle/{{ article._id }}"
       type="button"
@@ -18,11 +18,11 @@
 
   <h3 *ngIf="loading" class="margin-top-5">Loading</h3>
 
-  <div *ngIf="!loading" class="margin-top-3 border-black-2">
+  <div *ngIf="!loading" class="margin-top-3 margin-bottom-7 border-black-2">
     <div class="flex-center border-black-1 title-padding max-width-35">
       {{ article.title }}
     </div>
-    <div class="border-black-1 title-padding max-width-35">
+    <div class="border-black-1 title-padding max-width-35 line-break">
       {{ article.content }}
     </div>
   </div>
