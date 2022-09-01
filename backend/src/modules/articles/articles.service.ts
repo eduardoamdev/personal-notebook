@@ -17,7 +17,7 @@ export class ArticlesService {
     try {
       const foundArticles = await this.articleModel
         .find()
-        .select("title content timestamp");
+        .select("title content");
 
       this.errorService.checkNullResponseFromDB(foundArticles);
 
@@ -31,7 +31,7 @@ export class ArticlesService {
     try {
       const foundArticle = await this.articleModel
         .findById(id)
-        .select("title content timestamp");
+        .select("title content");
 
       this.errorService.checkNullResponseFromDB(foundArticle);
 

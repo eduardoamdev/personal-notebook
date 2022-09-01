@@ -11,9 +11,6 @@ export class Article {
 
   @Prop()
   content: string;
-
-  @Prop()
-  timestamp: number;
 }
 
 export const ArticleSchema = SchemaFactory.createForClass(Article);
